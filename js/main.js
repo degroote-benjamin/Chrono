@@ -8,8 +8,12 @@ value = value * 60
         swap()
     }, 1000);
 
+
+// init val in chrono
 $(".chrono").text(sec(value));
 
+
+// break button
 $('.gaucheb').click(function() {
     $(".timerbreak").text($(".timerbreak").text() - 1)
     if ($(".timerbreak").text() < 1) {
@@ -21,6 +25,8 @@ $('.droiteb').click(function() {
     $(".timerbreak").text(parseInt($(".timerbreak").text()) + 1)
 });
 
+
+// session button
 $('.gauches').click(function() {
     $(".timerses").text($(".timerses").text() - 1)
     if ($(".timerses").text() < 1) {
@@ -38,6 +44,8 @@ $('.droites').click(function() {
     clearInterval(timer)
 });
 
+
+// function for minute
 function sec(d) {
     d = Number(d);
     var m = Math.floor(d % 3600 / 60);
@@ -51,6 +59,8 @@ function sec(d) {
     return m + ":" + s
 }
 
+
+// function for swap break and session
 function swap() {
     if (actuel == "default" && value == 0) {
         value = ($(".timerbreak").text()) * 60
