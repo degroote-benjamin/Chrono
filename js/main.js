@@ -1,16 +1,21 @@
 var value = ($(".timerses").text())
 var actuel = "default"
-var start = "stop"
-var timer
+var timer = null
 value = value * 60
 
 $(".chrono").click(function(){
+  if(timer !==null)
+  {
+    return ;
+  }
   timer = setInterval(function() {
       value = value - 1;
       $(".chrono").text(sec(value));
       swap()
   }, 1000);
+$(".chrono").toggleClass('change_me newClass');  
 })
+
 
 // init val in chrono
 $(".chrono").text(sec(value));
@@ -23,11 +28,13 @@ $('.gaucheb').click(function() {
         $(".timerbreak").text(1)
     }
     clearInterval(timer)
+    timer = null
 });
 
 $('.droiteb').click(function() {
     $(".timerbreak").text(parseInt($(".timerbreak").text()) + 1)
     clearInterval(timer)
+    timer = null
 });
 
 
@@ -40,6 +47,7 @@ $('.gauches').click(function() {
     value = ($(".timerses").text()) * 60
     $(".chrono").text(sec(value));
     clearInterval(timer)
+    timer = null
 });
 
 $('.droites').click(function() {
@@ -47,6 +55,7 @@ $('.droites').click(function() {
     value = ($(".timerses").text()) * 60
     $(".chrono").text(sec(value));
     clearInterval(timer)
+    timer = null
 });
 
 
