@@ -3,18 +3,26 @@ var actuel = "default"
 var timer = null
 value = value * 60
 
-$(".chrono").click(function(){
+$("#bonjour").click(function(){
+  if($("#bonjour").hasClass("chrono")){
   if(timer !==null)
   {
     return ;
   }
   timer = setInterval(function() {
       value = value - 1;
-      $(".chrono").text(sec(value));
+      $("#bonjour").text(sec(value));
       swap()
   }, 1000);
-$(".chrono").toggleClass('change_me newClass');  
+setTimeout(function(){$("#bonjour").toggleClass('chrono chronos');},1000);
+}
+else if($("#bonjour").hasClass("chronos")){
+  clearInterval(timer)
+  timer = null
+  setTimeout(function(){$("#bonjour").toggleClass('chronos chrono');},1000);
+}
 })
+
 
 
 // init val in chrono

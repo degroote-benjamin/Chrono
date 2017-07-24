@@ -99,7 +99,7 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-#compteur {
+#bonjour {
     margin-top: 25px;
     height: 180px;
     border: 3px solid black;
@@ -111,7 +111,7 @@ textarea {
 }
 
 @media (min-width:720px) {
-    .chrono {
+    #bonjour {
         height: 500px;
     }
 }
