@@ -1,13 +1,16 @@
 var value = ($(".timerses").text())
 var actuel = "default"
 var start = "stop"
+var timer
 value = value * 60
-    var timer = setInterval(function() {
-        value = value - 1;
-        $(".chrono").text(sec(value));
-        swap()
-    }, 1000);
 
+$(".chrono").click(function(){
+  timer = setInterval(function() {
+      value = value - 1;
+      $(".chrono").text(sec(value));
+      swap()
+  }, 1000);
+})
 
 // init val in chrono
 $(".chrono").text(sec(value));
@@ -19,10 +22,12 @@ $('.gaucheb').click(function() {
     if ($(".timerbreak").text() < 1) {
         $(".timerbreak").text(1)
     }
+    clearInterval(timer)
 });
 
 $('.droiteb').click(function() {
     $(".timerbreak").text(parseInt($(".timerbreak").text()) + 1)
+    clearInterval(timer)
 });
 
 
