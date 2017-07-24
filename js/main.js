@@ -3,30 +3,28 @@ var actuel = "default"
 var timer = null
 value = value * 60
 
-$("#bonjour").click(function(){
-  if($("#bonjour").hasClass("chrono")){
-  if(timer !==null)
-  {
-    return ;
-  }
-  timer = setInterval(function() {
-      value = value - 1;
-      $("#bonjour").text(sec(value));
-      swap()
-  }, 1000);
-setTimeout(function(){$("#bonjour").toggleClass('chrono chronos');},1000);
-}
-else if($("#bonjour").hasClass("chronos")){
-  clearInterval(timer)
-  timer = null
-  setTimeout(function(){$("#bonjour").toggleClass('chronos chrono');},1000);
-}
+$("#bonjour").click(function() {
+    if ($("#bonjour").hasClass("chrono")) {
+        if (timer !== null) {
+            return;
+        }
+        timer = setInterval(function() {
+            value = value - 1;
+            $("#bonjour").text(sec(value));
+            swap()
+        }, 1000);
+        $("#bonjour").toggleClass('chrono chronos');
+    } else if ($("#bonjour").hasClass("chronos")) {
+        clearInterval(timer)
+        timer = null
+        $("#bonjour").toggleClass('chronos chrono');
+    }
 })
 
 
 
 // init val in chrono
-$(".chrono").text(sec(value));
+$("#bonjour").text(sec(value));
 
 
 // break button
@@ -35,14 +33,24 @@ $('.gaucheb').click(function() {
     if ($(".timerbreak").text() < 1) {
         $(".timerbreak").text(1)
     }
-    clearInterval(timer)
-    timer = null
+    if (actuel === "break") {
+        value = ($(".timerbreak").text()) * 60
+        $("#bonjour").text(sec(value));
+        clearInterval(timer)
+        timer = null
+        $("#bonjour").toggleClass('chronos chrono');
+    }
 });
 
 $('.droiteb').click(function() {
     $(".timerbreak").text(parseInt($(".timerbreak").text()) + 1)
-    clearInterval(timer)
-    timer = null
+    if (actuel === "break") {
+        value = ($(".timerbreak").text()) * 60
+        $("#bonjour").text(sec(value));
+        clearInterval(timer)
+        timer = null
+        $("#bonjour").toggleClass('chronos chrono');
+    }
 });
 
 
@@ -52,18 +60,24 @@ $('.gauches').click(function() {
     if ($(".timerses").text() < 1) {
         $(".timerses").text(1)
     }
-    value = ($(".timerses").text()) * 60
-    $(".chrono").text(sec(value));
-    clearInterval(timer)
-    timer = null
+    if (actuel === "default") {
+        value = ($(".timerses").text()) * 60
+        $("#bonjour").text(sec(value));
+        clearInterval(timer)
+        timer = null
+        $("#bonjour").toggleClass('chronos chrono');
+    }
 });
 
 $('.droites').click(function() {
     $(".timerses").text(parseInt($(".timerses").text()) + 1)
-    value = ($(".timerses").text()) * 60
-    $(".chrono").text(sec(value));
-    clearInterval(timer)
-    timer = null
+    if (actuel === "default") {
+        value = ($(".timerses").text()) * 60
+        $("#bonjour").text(sec(value));
+        clearInterval(timer)
+        timer = null
+        $("#bonjour").toggleClass('chronos chrono');
+    }
 });
 
 
