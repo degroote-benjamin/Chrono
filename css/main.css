@@ -101,6 +101,12 @@ textarea {
 .session{
   border-radius: 50%;
 }
+.blue{
+  color: blue;
+}
+.red{
+  color:red;
+}
 #bonjour {
     margin-top: 25px;
     height: 180px;
