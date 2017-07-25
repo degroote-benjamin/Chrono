@@ -107,7 +107,6 @@ textarea {
     border: 3px solid black;
     border-radius: 50%;
     font-size: 20px;
-    cursor:pointer;
     position: relative;
     padding: 0;
     display: flex;
