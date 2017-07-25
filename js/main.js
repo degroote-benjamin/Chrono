@@ -2,6 +2,7 @@ var value = ($(".timerses").text())
 var actuel = "default"
 var timer = null
 value = value * 60
+var interval = 1000
 $('.session').css('background-color', 'blue');
 
 $("#bonjour").click(function() {
@@ -11,10 +12,12 @@ $("#bonjour").click(function() {
             return;
         }
         timer = setInterval(function() {
+          if(value ===0){
             swap()
+          }
             value = value - 1;
             $(".timer").text(minute(value));
-        }, 1000);
+        }, interval);
         $("#bonjour").toggleClass('chrono chronos');
     } else if ($("#bonjour").hasClass("chronos")) {
         clearInterval(timer)
@@ -101,22 +104,22 @@ function minute(d) {
 // function for swap break and session
 function swap() {
     if (actuel == "default" && value == 0) {
-        $('.session').width("0%")
-        $('.session').height("0%")
+        $('.session').width("0")
+        $('.session').height("0")
         value = ($(".timerbreak").text()) * 60
         $('.session').css('background-color', 'red');
-        animationcolor()
         actuel = "break"
-    } else if (actuel == "break" && value == 0) {
-        $('.session').width("0%")
-        $('.session').height("0%")
+    }
+    if (actuel == "break" && value == 0) {
+        $('.session').width("0")
+        $('.session').height("0")
         value = ($(".timerses").text()) * 60
         $('.session').css({
             'background-color': 'blue'
         });
-        animationcolor()
         actuel = "default"
     }
+    animationcolor()
 }
 
 // animate color
@@ -124,5 +127,5 @@ function animationcolor() {
     $('.session').animate({
         height: '100%',
         width: '100%'
-    }, (value * 1000));
+    }, (value * interval));
 }
